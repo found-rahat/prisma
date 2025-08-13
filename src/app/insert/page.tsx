@@ -1,5 +1,6 @@
 import Image from "next/image";
-import prisma from "../../prisma/prisma";
+import prisma from "../../../prisma/prisma";
+import AddFormDesign from "./AddFormDesign";
 
 export default async function Home() {
   // const InsertUser = await prisma.user.create({
@@ -15,14 +16,7 @@ export default async function Home() {
 
   return (
     <main className="m-4">
-      <h1>User List</h1>
-      <ul>
-        {users.map((user) => (
-          <li key={user.id}>
-            {user.id}-{user.name}
-          </li>
-        ))}
-      </ul>
+      <AddFormDesign />
     </main>
   );
 }
