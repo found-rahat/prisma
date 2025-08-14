@@ -14,6 +14,7 @@ export default async function Home() {
   const users = await prisma.user.findMany();
 
   return (
+    // <layout>
     <main className="m-4">
       <h1>User List</h1>
       <ul>
@@ -24,5 +25,6 @@ export default async function Home() {
         ))}
       </ul>
     </main>
+    // </layout>
   );
 }
