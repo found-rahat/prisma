@@ -3,9 +3,9 @@ import { useEffect, useState } from "react";
 
 export default function AddFormDesign() {
   const [users, setUsers] = useState<any[]>([]);
-  // const [name, setName] = useState("");
-  // const [email, setEmail] = useState("");
-  // const [mark, setMark] = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [mark, setMark] = useState("");
 
   useEffect(() => {
     loadUsers();
@@ -17,16 +17,29 @@ export default function AddFormDesign() {
     setUsers(data);
   }
 
-  // async function handleSubmit() {
-  //   // if (!name || !email || !mark) {
-  //   //   alert("Fill all input fields Please");
-  //   //   return;
-  //   // }
-  // }
+  async function handleSubmit() {
+    if (!name || !email || !mark) {
+      alert("Fill all input fields Please");
+      return;
+    }
+    const res = await fetch("/api/insert", {
+      method: "POST",
+      body: JSON.stringify({ email, name, mark: Number(mark) }),
+    });
+    if (res.ok) {
+      const newUser = await res.json();
+      setUsers((prev) => [...prev, newUser]); //previous user ar list thakbe jokhon new user insert korbo tokhon oi new user add hoye jabe instent.
+      setEmail("");
+      setName("");
+      setMark("");
+    } else {
+      alert("fail to add user");
+    }
+  }
   return (
     <div>
-      {/* <>
-        <form onChange={handleSubmit}>
+      <>
+        <form>
           <div className="max-w-md mx-auto bg-white p-6 rounded-lg shadow-md space-y-4 mb-6">
             <div>
               <label>Email</label>
@@ -62,6 +75,7 @@ export default function AddFormDesign() {
             </div>
 
             <button
+              onClick={handleSubmit}
               type="submit"
               className="bg-blue-600 text-white px-4 py-2 rounded cursor-pointer"
             >
@@ -69,7 +83,7 @@ export default function AddFormDesign() {
             </button>
           </div>
         </form>
-      </> */}
+      </>
       <>
         <table className="min-w-full bg-white border border-gray-700 rounded-lg overflow-hidden shadow">
           <thead className="bg-gray-100 text-gray-700">
