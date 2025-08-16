@@ -6,6 +6,6 @@ export async function GET() {
     const users = await prisma.user.findMany();
     return NextResponse.json(users);
   } catch (err) {
-    return NextResponse.json({ error: "Faild to fetch user" }, { status: 500 });
+    return NextResponse.json({ error: "Faild to fetch user" }, { status: 500 }); //proper database theke data anar process
   }
 }
