@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 
 export default function AddFormDesign() {
   const [users, setUsers] = useState<any[]>([]);
-  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
   const [mark, setMark] = useState("");
 
   useEffect(() => {
@@ -18,71 +18,73 @@ export default function AddFormDesign() {
   }
 
   async function handleSubmit() {
-    if (!name || !email || !mark) {
-      alert("Fill all input fields Please");
+    if (!email || !name || !mark) {
+      alert("Please fill all fields!");
       return;
     }
+
     const res = await fetch("/api/insert", {
       method: "POST",
+      // headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, name, mark: Number(mark) }),
     });
+
     if (res.ok) {
+      // নতুন ইউজার ডেটা অ্যাড করা
       const newUser = await res.json();
-      setUsers((prev) => [...prev, newUser]); //previous user ar list thakbe jokhon new user insert korbo tokhon oi new user add hoye jabe instent.
+      setUsers((prev) => [...prev, newUser]); // instant update
       setEmail("");
       setName("");
       setMark("");
     } else {
-      alert("fail to add user");
+      alert("Failed to add user");
     }
   }
   return (
     <div>
       <>
-        <form>
-          <div className="max-w-md mx-auto bg-white p-6 rounded-lg shadow-md space-y-4 mb-6">
-            <div>
-              <label>Email</label>
-              <input
-                className="border px-3 py-2 w-full "
-                type="email"
-                value={email || ""}
-                placeholder="E-mail"
-                onChange={(e) => setEmail(e.target.value)} // aita na dle value show kore na and typing korle o show kore na
-              />
-            </div>
-
-            <div>
-              <label>Name</label>
-              <input
-                className="border px-3 py-2 w-full"
-                type="text"
-                value={name || ""}
-                placeholder="Name"
-                onChange={(e) => setName(e.target.value)} // aita na dle value show kore na and typing korle o show kore na
-              />
-            </div>
-
-            <div>
-              <label>Mark</label>
-              <input
-                className="border px-3 py-2 w-full"
-                type="number"
-                value={mark || ""}
-                placeholder="Marks"
-                onChange={(e) => setMark(e.target.value)} // aita na dle value show kore na and typing korle o show kore na
-              />
-            </div>
-
-            <button
-              onClick={handleSubmit}
-              type="submit"
-              className="bg-blue-600 text-white px-4 py-2 rounded cursor-pointer"
-            >
-              Submit
-            </button>
+        <div className="max-w-md mx-auto bg-white p-6 rounded-lg shadow-md space-y-4 mb-6">
+          <div>
+            <label>Email</label>
+            <input
+              className="border px-3 py-2 w-full "
+              type="email"
+              value={email}
+              placeholder="E-mail"
+              onChange={(e) => setEmail(e.target.value)} // aita na dle value show kore na and typing korle o show kore na
+            />
           </div>
-        </form>
+
+          <div>
+            <label>Name</label>
+            <input
+              className="border px-3 py-2 w-full"
+              type="text"
+              value={name}
+              placeholder="Name"
+              onChange={(e) => setName(e.target.value)} // aita na dle value show kore na and typing korle o show kore na
+            />
+          </div>
+
+          <div>
+            <label>Mark</label>
+            <input
+              className="border px-3 py-2 w-full"
+              type="number"
+              value={mark}
+              placeholder="Marks"
+              onChange={(e) => setMark(e.target.value)} // aita na dle value show kore na and typing korle o show kore na
+            />
+          </div>
+
+          <button
+            onClick={handleSubmit}
+            type="submit"
+            className="bg-blue-600 text-white px-4 py-2 rounded cursor-pointer"
+          >
+            Submit
+          </button>
+        </div>
       </>
       <>
         <table className="min-w-full bg-white border border-gray-700 rounded-lg overflow-hidden shadow">

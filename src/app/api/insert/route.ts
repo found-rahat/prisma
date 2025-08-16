@@ -4,9 +4,6 @@ import { NextRequest, NextResponse } from "next/server";
 export async function POST(req: NextRequest) {
   try {
     const { email, name, mark } = await req.json();
-    if (!email || !name || !mark) {
-      return NextResponse.json({ error: "Missing field" }, { status: 400 });
-    }
     const user = await prisma.user.create({
       data: {
         email,
@@ -16,8 +13,17 @@ export async function POST(req: NextRequest) {
     });
     return NextResponse.json(user, { status: 201 });
   } catch (err: any) {
-    console.error("Insert Error: ", err);
-    return NextResponse.json({ error: "Failed to Insert" }, { status: 500 });
+    if (err.code === "P2002") {
+      return NextResponse.json(
+        { error: "Email already exists" },
+        { status: 409 }
+      );
+    }
+    console.error("Insert Error:", err);
+    return NextResponse.json(
+      { error: "Failed to insert user" },
+      { status: 500 }
+    );
   }
 }
 
@@ -26,6 +32,9 @@ export async function GET() {
     const users = await prisma.user.findMany();
     return NextResponse.json(users);
   } catch (err) {
-    return NextResponse.json({ error: "Faild to fetch user" }, { status: 500 }); //proper database theke data anar process
+    return NextResponse.json(
+      { error: "Failed to fetch users" },
+      { status: 500 }
+    );
   }
 }
