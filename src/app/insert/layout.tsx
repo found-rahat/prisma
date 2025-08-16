@@ -6,9 +6,9 @@ export default function productDetilsLayouts({
   return (
     <>
       {children}
-      <h4 className="text-4xl font-bold text-center py-4 bg-emerald-400">
+      {/* <h4 className="text-4xl font-bold text-center py-4 bg-emerald-400">
         insert pages
-      </h4>
+      </h4> */}
     </>
   );
 }
