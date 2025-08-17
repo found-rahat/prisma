@@ -2,6 +2,7 @@
 
 import React from "react";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 export default function ProfilePage({
   params,
@@ -10,6 +11,7 @@ export default function ProfilePage({
 }) {
   const resolvedParams = React.use(params);
   const profileId = Number(resolvedParams.profile);
+
   const [user, setUser] = useState<any>(null);
   const [mark, setMark] = useState("");
   const [name, setName] = useState("");
@@ -79,6 +81,14 @@ export default function ProfilePage({
       <h1 className="bg-fuchsia-700 text-center text-3xl py-3 mb-4 text-white">
         Product Details {profileId}
       </h1>
+      <div className="flex justify-between items-center mb-6">
+        <Link
+          href={"/"}
+          className="bg-amber-500 hover:bg-amber-600 text-white px-4 py-2 rounded-lg shadow-md transition"
+        >
+          Home
+        </Link>
+      </div>
 
       {error && <p className="text-red-500 mb-2">{error}</p>}
 
@@ -131,6 +141,9 @@ export default function ProfilePage({
       ) : (
         <p>No user found.</p>
       )}
+      <h1 className="bg-fuchsia-700 text-center mt-4 text-3xl py-3 mb-4 text-white">
+        Product Details {profileId}
+      </h1>
     </div>
   );
 }
