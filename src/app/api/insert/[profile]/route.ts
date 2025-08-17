@@ -3,10 +3,11 @@ import prisma from "../../../../../prisma/prisma";
 
 export async function GET(
   req: Request,
-  { params }: { params: { profile: string } }
+  context: { params: { profile: string } }
 ) {
+  const { profile } = await context.params;
   const user = await prisma.user.findUnique({
-    where: { id: Number(params.profile) },
+    where: { id: Number(profile) },
   });
 
   if (!user) {
@@ -18,13 +19,14 @@ export async function GET(
 
 export async function PUT(
   req: Request,
-  { params }: { params: { profile: string } }
+  content: { params: { profile: string } }
 ) {
+  const { profile } = await content.params;
   const body = await req.json();
 
   try {
     const updatedUser = await prisma.user.update({
-      where: { id: Number(params.profile) },
+      where: { id: Number(profile) },
       data: { mark: Number(body.mark), name: body.name },
     });
     return NextResponse.json(updatedUser);
