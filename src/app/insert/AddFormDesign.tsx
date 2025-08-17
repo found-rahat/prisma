@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 export default function AddFormDesign() {
   const [users, setUsers] = useState<any[]>([]);
@@ -113,7 +114,9 @@ export default function AddFormDesign() {
                 <td className="px-4 py-2 border-b">{user.name}</td>
                 <td className="px-4 py-2 border-b">{user.email}</td>
                 <td className="px-4 py-2 border-b">{user.mark}</td>
-                <td className="px-4 py-2 border-b">View</td>
+                <td className="px-4 py-2 border-b">
+                  <Link href={`/insert/${user.id}`}> View </Link>
+                </td>
               </tr>
             ))}
           </tbody>
