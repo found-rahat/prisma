@@ -2,6 +2,9 @@ import Image from "next/image";
 import prisma from "../../prisma/prisma";
 import Link from "next/link";
 import Menu from "./menu";
+export const metadata = {
+  title: "Home Page",
+};
 
 export default async function Home() {
   // const InsertUser = await prisma.user.create({

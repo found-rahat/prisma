@@ -1,6 +1,3 @@
-export const metadata = {
-  title: "Insert User data",
-};
 export default function productDetilsLayouts({
   children,
 }: {

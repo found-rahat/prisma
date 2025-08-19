@@ -1,4 +1,7 @@
 import Menu from "../../menu";
+export const metadata = {
+  title: "Forgot Password Page",
+};
 export default function ForgotPassword() {
   return (
     <div>

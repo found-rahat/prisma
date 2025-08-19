@@ -3,12 +3,14 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { metadata } from "../page";
+import Menu from "@/app/menu";
 
-export default function ProfilePage({
-  params,
-}: {
+type Props = {
   params: Promise<{ profile: string }>;
-}) {
+};
+
+export default function ProfilePage({ params }: Props) {
   const resolvedParams = React.use(params);
   const profileId = Number(resolvedParams.profile);
 
@@ -17,6 +19,14 @@ export default function ProfilePage({
   const [name, setName] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+
+  useEffect(() => {
+    if (user) {
+      document.title = `Product ${profileId} - ${user.name}`;
+    } else {
+      document.title = `Product ${profileId}`;
+    }
+  }, [profileId, user]);
 
   // Load user on mount
   useEffect(() => {
@@ -77,73 +87,68 @@ export default function ProfilePage({
   }
 
   return (
-    <div className="p-4 max-w-md mx-auto">
-      <h1 className="bg-fuchsia-700 text-center text-3xl py-3 mb-4 text-white">
-        Product Details {profileId}
-      </h1>
-      <div className="flex justify-between items-center mb-6">
-        <Link
-          href={"/"}
-          className="bg-amber-500 hover:bg-amber-600 text-white px-4 py-2 rounded-lg shadow-md transition"
-        >
-          Home
-        </Link>
+    <>
+      <Menu />
+      <div className="p-4 max-w-md mx-auto">
+        <h1 className="bg-fuchsia-700 text-center text-3xl py-3 mb-4 text-white">
+          Product Details {profileId}
+        </h1>
+
+        {error && <p className="text-red-500 mb-2">{error}</p>}
+
+        {user ? (
+          <>
+            <p>
+              <strong>Name:</strong> {user.name}
+            </p>
+            <p>
+              <strong>Email:</strong> {user.email}
+            </p>
+            <p>
+              <strong>Mark:</strong> {user.mark}
+            </p>
+            <p>
+              <strong>Registration Date:</strong>{" "}
+              {new Date(user.createAt).toLocaleDateString("en-US", {
+                day: "2-digit",
+                month: "long",
+                year: "numeric",
+              })}
+            </p>
+            <form>
+              <div className="mt-4 flex gap-2">
+                <input
+                  type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  className="border px-2 py-1 flex-1"
+                  placeholder="Update name"
+                />
+                <input
+                  type="number"
+                  value={mark}
+                  onChange={(e) => setMark(e.target.value)}
+                  className="border px-2 py-1 w-24"
+                  placeholder="Mark"
+                />
+                <button
+                  onClick={updateUser}
+                  type="submit"
+                  disabled={loading}
+                  className="bg-green-500 px-4 py-1 text-white rounded"
+                >
+                  {loading ? "Updating..." : "Update"}
+                </button>
+              </div>
+            </form>
+          </>
+        ) : (
+          <p>No user found.</p>
+        )}
+        <h1 className="bg-fuchsia-700 text-center mt-4 text-3xl py-3 mb-4 text-white">
+          Product Details {profileId}
+        </h1>
       </div>
-
-      {error && <p className="text-red-500 mb-2">{error}</p>}
-
-      {user ? (
-        <>
-          <p>
-            <strong>Name:</strong> {user.name}
-          </p>
-          <p>
-            <strong>Email:</strong> {user.email}
-          </p>
-          <p>
-            <strong>Mark:</strong> {user.mark}
-          </p>
-          <p>
-            <strong>Registration Date:</strong>{" "}
-            {new Date(user.createAt).toLocaleDateString("en-US", {
-              day: "2-digit",
-              month: "long",
-              year: "numeric",
-            })}
-          </p>
-          <form onClick={updateUser}>
-            <div className="mt-4 flex gap-2">
-              <input
-                type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                className="border px-2 py-1 flex-1"
-                placeholder="Update name"
-              />
-              <input
-                type="number"
-                value={mark}
-                onChange={(e) => setMark(e.target.value)}
-                className="border px-2 py-1 w-24"
-                placeholder="Mark"
-              />
-              <button
-                // onClick={updateUser}
-                type="submit"
-                disabled={loading}
-                className="bg-green-500 px-4 py-1 text-white rounded"
-              >
-                {loading ? "Updating..." : "Update"}
-              </button>
-            </div>
-          </form>
-        </>
-      ) : (
-        <p>No user found.</p>
-      )}
-      <h1 className="bg-fuchsia-700 text-center mt-4 text-3xl py-3 mb-4 text-white">
-        Product Details {profileId}
-      </h1>
-    </div>
+    </>
   );
 }
