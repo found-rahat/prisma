@@ -15,7 +15,6 @@ export default async function Home() {
   const users = await prisma.user.findMany();
 
   return (
-    // <layout>
     <main className="m-6 max-w-2xl mx-auto">
       {/* Top bar */}
       <div className="flex justify-between items-center mb-6">
@@ -56,7 +55,5 @@ export default async function Home() {
         </ul>
       </div>
     </main>
-
-    // </layout>
   );
 }

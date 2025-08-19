@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,21 +26,12 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <header className="bg-blue-400">
+        <header className="bg-blue-200">
           <div>
-            <h1 className="text-4xl font-bold text-center py-4">
-              Hearder section
-            </h1>
+            <h1 className="text-4xl font-bold text-center py-4">Auth page</h1>
           </div>
         </header>
         {children}
-        <footer className="bg-amber-400">
-          <div>
-            <h1 className="text-4xl font-bold text-center py-4">
-              Footer Section
-            </h1>
-          </div>
-        </footer>
       </body>
     </html>
   );
