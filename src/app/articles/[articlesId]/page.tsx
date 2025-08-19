@@ -1,5 +1,7 @@
+// "use client";
 import Menu from "@/app/menu";
 import Link from "next/link";
+// import { use } from "react";
 
 export default async function NewArticles({
   params,
@@ -8,8 +10,8 @@ export default async function NewArticles({
   params: Promise<{ articlesId: string }>;
   searchParams: Promise<{ lang?: "en" | "es" | "fr" }>;
 }) {
-  const { articlesId } = await params;
-  const { lang = "en" } = await searchParams;
+  const { articlesId } = await params; // jokhon use client a use korbo tokhon use add kore nete hobe linke use(params) await bad a
+  const { lang = "en" } = await searchParams; // jokhon use client a use korbo tokhon use add kore nete hobe linke use(searchParams) await bad a
   return (
     <>
       <Menu />
