@@ -27,21 +27,21 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <header className="bg-blue-400">
+        {/* <header className="bg-blue-400">
           <div>
             <h1 className="text-4xl font-bold text-center py-4">
               Hearder section
             </h1>
           </div>
-        </header>
+        </header> */}
         {children}
-        <footer className="bg-amber-400">
+        {/* <footer className="bg-amber-400">
           <div>
             <h1 className="text-4xl font-bold text-center py-4">
               Footer Section
             </h1>
           </div>
-        </footer>
+        </footer> */}
       </body>
     </html>
   );

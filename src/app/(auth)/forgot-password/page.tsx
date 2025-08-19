@@ -1,3 +1,9 @@
+import Menu from "../../menu";
 export default function ForgotPassword() {
-  return <h1>Forgot Password Page</h1>;
+  return (
+    <div>
+      <Menu />
+      <h1>Forgot Password Page</h1>
+    </div>
+  );
 }

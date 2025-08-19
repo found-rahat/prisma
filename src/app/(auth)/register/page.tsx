@@ -1,3 +1,9 @@
+import Menu from "../../menu";
 export default function Register() {
-  return <h1>Register Page</h1>;
+  return (
+    <div>
+      <Menu />
+      <h1>Register Page</h1>
+    </div>
+  );
 }

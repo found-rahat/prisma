@@ -22,15 +22,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <header className="bg-blue-200">
-          <div>
-            <h1 className="text-4xl font-bold text-center py-4">Auth page</h1>
-          </div>
-        </header>
         {children}
       </body>
     </html>
