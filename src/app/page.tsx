@@ -61,6 +61,9 @@ export default async function Home() {
             )}
           </ul>
         </div>
+
+        <Link href="/articles/braking-news-123?lang=en"> Read in English</Link>
+        <Link href="/articles/braking-news-259?lang=fr"> Read in French</Link>
       </main>
     </div>
   );
