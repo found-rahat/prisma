@@ -6,14 +6,9 @@ export default function Notification() {
     <>
       <Card>
         Notification
-        <div>
-          <Link
-            className="bg-amber-400 m-4 p-5 rounded-xl"
-            href={"/dashboard/archived"}
-          >
-            Archived
-          </Link>
-        </div>
+        <Link className="bg-amber-400 m-4 p-5 rounded-xl" href={"/dashboard"}>
+          Default
+        </Link>
       </Card>
     </>
   );
