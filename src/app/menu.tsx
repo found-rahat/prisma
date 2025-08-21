@@ -10,6 +10,7 @@ const Navlink = [
   { name: "Register", href: "/register" },
   { name: "Forgot Password", href: "/forgot-password" },
   { name: "Dashboard", href: "/dashboard" },
+  { name: "Photos", href: "/photo-feed" },
 ];
 
 export default function Navbar() {
