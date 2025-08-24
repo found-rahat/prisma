@@ -7,10 +7,12 @@ const Navlink = [
   { name: "Home", href: "/" },
   { name: "Insert", href: "/insert" },
   { name: "Login", href: "/login" },
-  { name: "Register", href: "/register" },
-  { name: "Forgot Password", href: "/forgot-password" },
-  { name: "Dashboard", href: "/dashboard" },
-  { name: "Photos", href: "/photo-feed" },
+  // { name: "Register", href: "/register" },
+  // { name: "Forgot Password", href: "/forgot-password" },
+  // { name: "Dashboard", href: "/dashboard" },
+  // { name: "Photos", href: "/photo-feed" },
+  // { name: "Folder 1", href: "/Folder1" },
+  // { name: "Folder 2", href: "/folder2" },
 ];
 
 export default function Navbar() {
