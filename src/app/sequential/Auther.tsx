@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 type Author = {
   id: number;
   name: string;
@@ -17,6 +19,12 @@ export default async function AuthorShow({ userId }: { userId: number }) {
         <span className="font-semibold text-gray-700 hover:text-gray-900 transition-colors">
           {author.name}
         </span>
+        <Link
+          href={`/parallal/${userId}`}
+          className="bg-blue-600 ml-5 text-black py-1 px-4 rounded-2xl"
+        >
+          View
+        </Link>
       </div>
     </>
   );

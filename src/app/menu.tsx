@@ -10,6 +10,7 @@ const Navlink = [
   { name: "user Client", href: "/userClient" },
   { name: "user server", href: "/userServer" },
   { name: "Sequential", href: "/sequential" },
+  { name: "Parallal", href: "/parallal" },
   // { name: "Register", href: "/register" },
   // { name: "Forgot Password", href: "/forgot-password" },
   // { name: "Dashboard", href: "/dashboard" },
